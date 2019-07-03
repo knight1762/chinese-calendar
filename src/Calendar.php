@@ -96,7 +96,7 @@ class Calendar
      *
      * @var array
      */
-    protected $animals = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
+    protected $animals = ['鼠', '牛', '虎', '兔', '龍', '蛇', '馬', '羊', '猴', '雞', '狗', '豬'];
 
     /**
      * 24节气速查表.
@@ -104,10 +104,10 @@ class Calendar
      * @var array
      */
     protected $solarTerm = [
-        '小寒', '大寒', '立春', '雨水', '惊蛰', '春分',
-        '清明', '谷雨', '立夏', '小满', '芒种', '夏至',
-        '小暑', '大暑', '立秋', '处暑', '白露', '秋分',
-        '寒露', '霜降', '立冬', '小雪', '大雪', '冬至',
+        '小寒', '大寒', '立春', '雨水', '驚蟄', '春分',
+        '清明', '穀雨', '立夏', '小滿', '芒種', '夏至',
+        '小暑', '大暑', '立秋', '處暑', '白露', '秋分',
+        '寒露', '霜降', '立冬', '小雪', '大雪', '冬至',
     ];
 
     /**
@@ -204,7 +204,7 @@ class Calendar
      *
      * @var array
      */
-    protected $monthAlias = ['正', '二', '三', '四', '五', '六', '七', '八', '九', '十', '冬', '腊'];
+    protected $monthAlias = ['正', '二', '三', '四', '五', '六', '七', '八', '九', '十', '冬', '臘'];
 
     /**
      * 传入阳历年月日获得详细的公历、农历信息.
@@ -388,7 +388,7 @@ class Calendar
      */
     public function toConstellation($gregorianMonth, $gregorianDay)
     {
-        $constellations = '魔羯水瓶双鱼白羊金牛双子巨蟹狮子处女天秤天蝎射手魔羯';
+        $constellations = '魔羯水瓶雙魚白羊金牛雙子巨蟹獅子處女天秤天蠍射手魔羯';
         $arr = [20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22, 22];
 
         return mb_substr(
@@ -448,7 +448,7 @@ class Calendar
     public function toChinaYear($year)
     {
         if (!is_numeric($year)) {
-            throw new InvalidArgumentException("错误的年份:{$year}");
+            throw new InvalidArgumentException("錯誤的年份:{$year}");
         }
         $lunarYear = '';
         $year = (string) $year;
@@ -470,7 +470,7 @@ class Calendar
     {
         // 若参数错误 返回 -1
         if ($month > 12 || $month < 1) {
-            throw new InvalidArgumentException("错误的月份:{$month}");
+            throw new InvalidArgumentException("錯誤的月份:{$month}");
         }
 
         return $this->monthAlias[abs($month) - 1].'月';
@@ -692,7 +692,7 @@ class Calendar
             'lunar_day' => sprintf('%02d', $lunarDay),
             'lunar_hour' => $hour,
             'lunar_year_chinese' => $this->toChinaYear($lunarYear),
-            'lunar_month_chinese' => ($isLeap ? '闰' : '').$this->toChinaMonth($lunarMonth),
+            'lunar_month_chinese' => ($isLeap ? '閏' : '').$this->toChinaMonth($lunarMonth),
             'lunar_day_chinese' => $this->toChinaDay($lunarDay),
             'lunar_hour_chinese' => $lunarHour,
             'ganzhi_year' => $ganZhiYear,
@@ -747,7 +747,7 @@ class Calendar
 
         // 参数合法性效验
         if ($year < 1900 || $year > 2100 || $day > $maxDays) {
-            throw new InvalidArgumentException('传入的参数不合法');
+            throw new InvalidArgumentException('傳入的參數不合法');
         }
 
         // 计算农历的时间差
